@@ -5,7 +5,7 @@ from open_signup import open_signup_window
 # 创建窗口，使用 ttkbootstrap 的风格
 window = ttk.Window(themename='flatly')  # 可以选择不同的主题
 window.title("Our Social Club")
-window.geometry("1024x768")
+window.geometry("1536x900")
 
 # 创建一个自定义样式
 style = ttk.Style()
