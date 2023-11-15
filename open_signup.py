@@ -1,6 +1,7 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *  # 导入常量
 from tkinter import PhotoImage
+from User import User
 
 def center_window(win, width, height):
     """
@@ -25,10 +26,10 @@ def center_window(win, width, height):
 def confirm_psw(signup_window, nickname_entry, password_entry, password_rentry):
     """
 
-    :param signup_window:
-    :param nickname_entry:
-    :param password_entry:
-    :param password_rentry:
+    :param signup_window: 当前注册界面弹出窗口
+    :param nickname_entry: 昵称输入框
+    :param password_entry: 密码输入框
+    :param password_rentry: 密码二次确认输入框
     :return:
     """
     nic_name = nickname_entry.get()
@@ -43,6 +44,8 @@ def confirm_psw(signup_window, nickname_entry, password_entry, password_rentry):
         confirm_window.title("Congratulations")
         center_window(confirm_window, 310, 300)
         message = f"Let's welcome {nic_name} for joining our club!"
+        user = User(nic_name,psw_1)
+        user.save_to_csv("User_file.csv")
     else:
         confirm_window.title("Hmm... Something is wrong")
         center_window(confirm_window, 310, 300)
