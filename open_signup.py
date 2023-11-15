@@ -2,54 +2,40 @@ import ttkbootstrap as ttk
 from ttkbootstrap.constants import *  # 导入常量
 from tkinter import PhotoImage
 from User import User
-
-def center_window(win, width, height):
-    """
-    该函数用于计算并设置窗口中心位置，需要与tkinter或ttk共同配合使用
-    :param win: window窗口，即为tkinter的root操作对象
-    :param width: 目标设置宽度
-    :param height: 目标设置高度
-    :return: 无需返回，函数直接操作设置
-    """
-    # 获取屏幕尺寸
-    screen_width = win.winfo_screenwidth()
-    screen_height = win.winfo_screenheight()
-
-    # 计算 x, y 位置
-    x = int((screen_width - width) / 2)
-    y = int((screen_height - height) / 2)
-
-    # 设置窗口位置
-    win.geometry(f'{width}x{height}+{x}+{y}')
+from Center_window import center_window
 
 
 def confirm_psw(signup_window, nickname_entry, password_entry, password_rentry):
     """
 
-    :param signup_window: 当前注册界面弹出窗口
-    :param nickname_entry: 昵称输入框
-    :param password_entry: 密码输入框
-    :param password_rentry: 密码二次确认输入框
+    :param signup_window: 当前窗口
+    :param nickname_entry: 昵称对话框
+    :param password_entry: 密码对话框
+    :param password_rentry: 二次密码对话框
     :return:
     """
     nic_name = nickname_entry.get()
     psw_1 = password_entry.get()
     psw_2 = password_rentry.get()
 
+    # 创建确认窗口
     confirm_window = ttk.Toplevel(signup_window)
-    confirm_window.grid_columnconfigure(0, weight=1)  # 使列能够扩展，以便居中
+    confirm_window.grid_columnconfigure(0, weight=1)
+    center_window(confirm_window, 310, 300)
 
-
-    if psw_1 == psw_2:
-        confirm_window.title("Congratulations")
-        center_window(confirm_window, 310, 300)
-        message = f"Let's welcome {nic_name} for joining our club!"
-        user = User(nic_name,psw_1)
-        user.save_to_csv("User_file.csv")
-    else:
+    # 检查是否所有输入都已填写
+    if not nic_name or not psw_1 or not psw_2:
+        confirm_window.title("Error")
+        message = "Please fill in all fields."
+    elif psw_1 != psw_2:
         confirm_window.title("Hmm... Something is wrong")
-        center_window(confirm_window, 310, 300)
-        message = "Come on! Re-enter your password\nsince you don't want to forget, do you?"
+        message = "Passwords do not match.\nPlease re-enter your password."
+    else:
+        confirm_window.title("Congratulations")
+        message = f"Let's welcome {nic_name} for joining our club!"
+        # 创建 User 对象并保存
+        user = User(nic_name, psw_1)
+        user.save_to_csv("User_file.csv")
 
     ttk.Label(confirm_window, text=message).grid(row=0, column=0, pady=10, padx=10, sticky='nsew')
 
@@ -57,8 +43,9 @@ def confirm_psw(signup_window, nickname_entry, password_entry, password_rentry):
     close_button = ttk.Button(confirm_window, text="Close", bootstyle="danger", command=confirm_window.destroy)
     close_button.grid(row=1, column=0, pady=10)
 
-    confirm_window.grid_columnconfigure(0, weight=1)  # 配置网格布局，以便内容居中
-    confirm_window.grid_rowconfigure(0, weight=1)    # 配置网格布局，使标签和按钮在垂直方向上居中
+    confirm_window.grid_columnconfigure(0, weight=1)
+    confirm_window.grid_rowconfigure(0, weight=1)
+
 
 def open_signup_window(window):
     # 新界面基本内容确定
