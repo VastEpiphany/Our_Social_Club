@@ -1,8 +1,10 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *  # 导入常量，例如 LEFT, RIGHT 等
 from open_signup import open_signup_window,center_window
-from Login_Authorization import User_Authorization
+from Login_Authorization import User_Authorization,handle_login
 from Center_window import center_window
+
+
 
 # 创建窗口，使用 ttkbootstrap 的风格
 window = ttk.Window(themename='flatly')  # 可以选择不同的主题
@@ -22,16 +24,16 @@ theme_label.grid(row=0,column=0,pady=20,columnspan=3)
 sign_in_label1 = ttk.Label(window,text="User Name:")
 sign_in_label1.grid(row=1,column=0,padx=10,sticky='e')
 
-sign_in_label1_entry = ttk.Entry(window)
+sign_in_label1_entry = ttk.Entry(window,style='success')
 sign_in_label1_entry.grid(row=1,column=1,padx=10,sticky='ew')
 
 sign_in_label2 = ttk.Label(window,text="Password:")
 sign_in_label2.grid(row=2,column=0,padx=10,sticky='e')
 
-sign_in_label2_entry = ttk.Entry(window,show="*")
+sign_in_label2_entry = ttk.Entry(window,show="*",style='success')
 sign_in_label2_entry.grid(row=2,column=1,padx=10,sticky='ew')
 
-sign_in_button = ttk.Button(window, text="Sign In", bootstyle='info',command=lambda:User_Authorization(window,sign_in_label1_entry.get(),sign_in_label2_entry.get())) #sign in 登录按钮，需要在此按钮上加入Action来验证
+sign_in_button = ttk.Button(window, text="Sign In", bootstyle='info',command=lambda:handle_login(window,sign_in_label1_entry.get(),sign_in_label2_entry.get())) #sign in 登录按钮，需要在此按钮上加入Action来验证
 sign_in_button.grid(row=3,column=2,padx=10)
 
 # 创建 Sign Up 部分  CAUTION：受限于编程进度，目前用户注册的昵称必须是唯一的
