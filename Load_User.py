@@ -8,8 +8,7 @@ def Load_User(nic,uid):
             reader = csv.reader(file)
             for nickname,u_id,age,hobbies,birthday,sign in reader:
                 if nic == nickname and uid == u_id:
-                    Main_User(nickname,uid,age,hobbies,birthday,sign)
-                    return Main_User
+                    return Main_User(nickname,uid,age,hobbies,birthday,sign)
             with open("User_info.csv", 'a', encoding='utf-8') as file:
                 writer = csv.writer(file)
                 writer.writerow([nic, uid, None, None, None, None])
@@ -19,3 +18,4 @@ def Load_User(nic,uid):
         with open("User_info.csv",'a',encoding='utf-8') as file:
             writer = csv.writer(file)
             writer.writerow([nic,uid,None,None,None,None])
+            return Main_User(nic,uid)
