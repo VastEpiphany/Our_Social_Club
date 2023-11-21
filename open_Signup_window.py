@@ -1,7 +1,7 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *  # 导入常量
 from tkinter import PhotoImage
-from User import User
+from Login_User_Class import User
 from Center_window import center_window
 
 

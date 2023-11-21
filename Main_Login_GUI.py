@@ -1,8 +1,9 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *  # 导入常量，例如 LEFT, RIGHT 等
-from open_signup import open_signup_window,center_window
+from open_Signup_window import open_signup_window,center_window
 from Login_Authorization import User_Authorization,handle_login
 from Center_window import center_window
+from tkinter import PhotoImage
 
 
 

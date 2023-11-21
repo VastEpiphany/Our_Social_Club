@@ -18,3 +18,5 @@ This is the first version of Our Social Club    V0.1 Beta  2023/11/14 By Jerry B
    	1.Modify the GUI to make it looks better(main GUI)  
   	 2.Add some emojis to the confirm interface(Picture processing)
    Jerry Brown
+
+中文更新： 添加GUI界面
