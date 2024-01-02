@@ -3,6 +3,23 @@ from tkinter import messagebox
 from Center_window import center_window
 from Main_User_Class import Main_User
 
+def on_save_button_clicked(main_user, age_entry, hobbies_entry, birthday_entry, sign_entry):
+    """
+    当保存按钮被点击时调用此函数
+    :param main_user: Main_User 类的实例
+    :param age_entry: 年龄输入框
+    :param hobbies_entry: 兴趣输入框
+    :param birthday_entry: 生日输入框
+    :param sign_entry: 个性签名输入框
+    """
+    # 更新 main_user 对象的信息
+    main_user.age = age_entry.get()
+    main_user.hobbies = hobbies_entry.get()
+    main_user.birthday = birthday_entry.entry.get()
+    main_user.sign = sign_entry.get()
+
+    # 保存信息到CSV文件
+    main_user.save_to_csv("User_info.csv")
 def open_profile_setting_window(front_window,main_user):
     # 设置初始弹出窗口
     window = ttk.Toplevel(front_window)
@@ -42,8 +59,11 @@ def open_profile_setting_window(front_window,main_user):
 
 
     #Save保存按钮
-    save_button = ttk.Button(window,text="Save",command=
-    lambda: [main_user.update_info(age_entry.get(),hobbies_entry.get(),birthday_entry.entry.get(),sign_entry.get()),messagebox.showinfo(title="Success",message="Profile saved."),window.destroy()])
+    '''save_button = ttk.Button(window,text="Save",command=
+    lambda: [main_user.update_info(age_entry.get(),hobbies_entry.get(),birthday_entry.entry.get(),sign_entry.get()),messagebox.showinfo(title="Success",message="Profile saved."),window.destroy()])'''
+    save_button = ttk.Button(window, text='Save', command=lambda: [
+        on_save_button_clicked(main_user, age_entry, hobbies_entry, birthday_entry, sign_entry),
+        messagebox.showinfo(title="Success", message="Profile saved."), window.destroy()])
     save_button.place(x=490,y=350)
 
 

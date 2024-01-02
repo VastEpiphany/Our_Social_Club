@@ -1,4 +1,5 @@
 from Login_User_Class import User
+import csv
 
 class Main_User(User):
     """
@@ -40,8 +41,26 @@ class Main_User(User):
             self.sign = sign
 
 
-    def save_user_info(self,file_path):
-        pass
 
-    def load_user_info(self,file_path):
-        pass
+    def save_to_csv(self, csv_file):
+        '''
+        Saves the current user's information to a specified CSV file.
+        :param csv_file: Path to the CSV file
+        '''
+        updated = False
+        data = []
+        with open(csv_file, 'r', newline='', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if row and row[0] == self.nickname and row[1] == self.mid:
+                    data.append([self.nickname, self.mid, self.age, self.hobbies, self.birthday, self.sign])
+                    updated = True
+                else:
+                    data.append(row)
+
+        if not updated:
+            data.append([self.nickname, self.mid, self.age, self.hobbies, self.birthday, self.sign])
+
+        with open(csv_file, 'w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerows(data)

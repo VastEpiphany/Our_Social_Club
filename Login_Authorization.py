@@ -24,7 +24,7 @@ def handle_login(window,nic_name,psw):
                 if nic_name == user_nickname:
                     us_id = user_id
         ## 登录成功，延迟关闭当前窗口，然后打开新窗口
-        window.after(1000, lambda: [main(nic_name,us_id),window.destroy()])  # 延迟 2 秒关闭窗口
+        window.after(1000, lambda:[main(nic_name,us_id),window.destroy()])  # 延迟 2 秒关闭窗口
 
 
 def User_Authorization(window, nic_name, psw)->bool:
