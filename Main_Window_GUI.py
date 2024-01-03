@@ -3,7 +3,9 @@ from Center_window import center_window
 from Main_User_Class import Main_User
 from Load_User import  Load_User
 from Open_profile_window import open_profile_window
+from Open_Addfriend_window import AddFriend_Window
 from Student_BlackBoard import StudentBlackBoard
+
 
 def main(nicname,uid):
 #用户个人信息载入
@@ -24,9 +26,15 @@ def main(nicname,uid):
     # 按钮frame窗口
     button_frame = ttk.Frame(window, padding=10)
 
+    #创建my profile按钮并且执行相关操作
     button_frame.pack(expand=False, side='left', padx=100)
     my_profile_button = ttk.Button(button_frame, text="My Profile",command=lambda: open_profile_window(window,this_user))
     my_profile_button.grid(row=0, column=0, padx=5)
+
+    #创建add friend按钮并且执行相关操作
+    add_friend_button = ttk.Button(button_frame,text="Add Friend",command=lambda:AddFriend_Window(window,this_user))
+    add_friend_button.grid(row=5,column=0,padx=5)
+
 
     # 创建一个 Frame 作为 blackboard
     blackboard_frame = ttk.Frame(window,style='secondary', padding=10)

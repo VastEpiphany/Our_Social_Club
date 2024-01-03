@@ -9,10 +9,11 @@ def Load_User(nic,uid):
             for nickname,u_id,age,hobbies,birthday,sign in reader:
                 if nic == nickname and uid == u_id:
                     return Main_User(nickname,uid,age,hobbies,birthday,sign)
-            with open("User_info.csv", 'a', encoding='utf-8') as file:
-                writer = csv.writer(file)
-                writer.writerow([nic, uid, None, None, None, None])
-                return Main_User(nic, uid)
+    except ValueError:
+        with open("User_info.csv", 'a', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow([nic, uid, None, None, None, None])
+            return Main_User(nic, uid)
 
     except FileNotFoundError:
         with open("User_info.csv",'a',encoding='utf-8') as file:
