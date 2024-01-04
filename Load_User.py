@@ -10,7 +10,7 @@ def Load_User(nic,uid):
                 if nic == nickname and uid == u_id:
                     return Main_User(nickname,uid,age,hobbies,birthday,sign)
     except ValueError:
-        with open("User_info.csv", 'a', encoding='utf-8') as file:
+        with open("User_info.csv", 'a', newline="",encoding='utf-8') as file:
             writer = csv.writer(file)
             writer.writerow([nic, uid, None, None, None, None])
             return Main_User(nic, uid)
