@@ -22,12 +22,29 @@ class AddFriend_Window:
             message = "Hmm... Seems that no person has to become your friend TAT"
         else:
             message = "Below are friends that you might want to greet with: " + ', '.join(recommended_friends)
-            button1 = ttk.Button(self.window, text="Add them",
+            button1 = ttk.Button(self.window, text="Add them！",
                                  command=lambda: self.add_recommend_friend_notify(recommended_friends))
-            button1.place(x=300,y=80)
+            button1.place(x=600,y=100)
 
+        #有关第一行Label朋友推荐的布局代码实现
         text = ttk.Label(self.window, text=message, font=('Bradley Hand ITC', 15))
         text.place(x=100, y=50)
+
+        #有关第二行Label直接加好友的布局代码实现
+        text2 = ttk.Label(self.window,text="Add your Friend directly:",font=('Bradley Hand ITC', 15))
+        text2.place(x=100,y=150)
+
+        #有关第三行Label输入框内容布局代码实现
+        text3 =  ttk.Label(self.window,text="Name of the friend:")
+        text3.place(x=100,y=200)
+
+
+        name_entry = ttk.Entry(self.window,show=None)
+        name_entry.place(x=250,y=200)
+
+        button2 = ttk.Button(self.window,text="Add",command=lambda:[self.friend_add(name_entry.get()),self.raise_notification(self.friend_add(name_entry.get()))])
+        button2.place(x=600,y=200)
+
 
 
 
@@ -58,14 +75,50 @@ class AddFriend_Window:
         return recommended_friends
 
     def friend_add(self, nickname):
+        flag = True
         try:
-            with open("user_friend.csv", "a", newline='', encoding="utf-8") as file:
+            # 先读取现有的朋友关系，以检查重复
+            existing_friends = set()
+            with open("user_friend.csv", "r", encoding="utf-8") as file:
+                reader = csv.reader(file)
+                for row in reader:
+                    existing_friends.add(tuple(row))
+
+            # 检查是否关系已经存在
+            if (self.myname, nickname) not in existing_friends:
+                # 写入新的朋友关系
+                with open("user_friend.csv", "a", newline='', encoding="utf-8") as file:
+                    writer = csv.writer(file)
+                    writer.writerow([self.myname, nickname])
+            else:
+                #print("Friendship already exists.")
+                tkinter.messagebox.showerror(title="Error",message="Friendship already exists!")
+                flag = False
+
+
+        except FileNotFoundError:
+            # 如果文件不存在，创建新文件并写入朋友关系
+            with open("user_friend.csv", "w", newline='', encoding="utf-8") as file:
                 writer = csv.writer(file)
-                writer.writerow([self.myname, nickname])  # 分别写入当前用户昵称和朋友昵称
+                writer.writerow([self.myname, nickname])
         except Exception as e:
-            print("Error occurred while adding friend:", e)
+            #print("Error occurred while adding friend:", e)
+            tkinter.messagebox.showerror(title="Error",message="Error occurred while adding friend")
+            flag = False
+        if flag == True:
+            return True
+        else:
+            return False
+
+    def raise_notification(self,add_friend):
+        if add_friend:
+            tkinter.messagebox.showinfo(title="Success",message="This friend has been successfully added!")
+        else:
+            tkinter.messagebox.showerror(title="Error",message="Cannot Add this friend due to some issues!")
+
 
     def add_recommend_friend_notify(self,recommend_friend):
+        self.window.grab_set()   #在我们弹出messagebox页面之前获取焦点  为了防止在弹出messagebox之后其他多个页面顺序被重置
         flag = True
         for friend_nickname in recommend_friend:
             try:
@@ -74,8 +127,13 @@ class AddFriend_Window:
                 flag = False
                 tkinter.messagebox.showerror("Error", f"Failed to add {friend_nickname}: {e}")
                 break
-        if flag:
+        if flag and self.friend_add(friend_nickname):
             tkinter.messagebox.showinfo("Success", "All friends added successfully!")
+        else:
+            pass
+
+        self.window.grab_release()  #释放焦点
+        self.window.focus_force()   #强制将焦点返回至当前窗口
 
 
     def friend_get(self, filepath):
@@ -96,3 +154,4 @@ class AddFriend_Window:
             return "Error! Incorrect file format."
         except Exception as e:
             return f"An error occurred: {e}"
+
