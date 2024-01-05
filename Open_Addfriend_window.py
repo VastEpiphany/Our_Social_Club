@@ -42,7 +42,7 @@ class AddFriend_Window:
         name_entry = ttk.Entry(self.window,show=None)
         name_entry.place(x=250,y=200)
 
-        button2 = ttk.Button(self.window,text="Add",command=lambda:[self.friend_add(name_entry.get()),self.raise_notification(self.friend_add(name_entry.get()))])
+        button2 = ttk.Button(self.window,text="Add",command=lambda:self.raise_notification(self.friend_add(name_entry.get())))
         button2.place(x=600,y=200)
 
 

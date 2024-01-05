@@ -4,6 +4,7 @@ from Main_User_Class import Main_User
 from Load_User import  Load_User
 from Open_profile_window import open_profile_window
 from Open_Addfriend_window import AddFriend_Window
+from Open_Deletefriend_Window import DeleteFriend_Window
 from Student_BlackBoard import StudentBlackBoard
 
 
@@ -34,6 +35,10 @@ def main(nicname,uid):
     #创建add friend按钮并且执行相关操作
     add_friend_button = ttk.Button(button_frame,text="Add Friend",command=lambda:AddFriend_Window(window,this_user))
     add_friend_button.grid(row=5,column=0,padx=5)
+
+    #创建delete friend按钮并且执行相关操作
+    delete_friend_button = ttk.Button(button_frame,text="Delete Friend",command=lambda:DeleteFriend_Window(window,this_user))
+    delete_friend_button.grid(row=6,column=0,padx=5)
 
 
     # 创建一个 Frame 作为 blackboard
