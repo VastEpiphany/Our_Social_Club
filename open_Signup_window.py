@@ -2,6 +2,7 @@ import ttkbootstrap as ttk
 from ttkbootstrap.constants import *  # 导入常量
 from tkinter import PhotoImage
 from Login_User_Class import User
+from Open_SecurityQ_Window import SecurityQuestion_Config
 from Center_window import center_window
 
 
@@ -71,6 +72,10 @@ def open_signup_window(window):
     password_rentry.grid(row=3, column=1, pady=5, padx=5, sticky='ew')
 
     ttk.Button(signup_window, text="Submit", bootstyle="success-outline", command=lambda: confirm_psw(signup_window, nickname_entry, password_entry, password_rentry)).grid(row=5, column=0, columnspan=2, pady=10)
+
+    ttk.Button(signup_window,text="Security Question Configuration",bootstyle="warning-outline",command=lambda: SecurityQuestion_Config(signup_window,nickname_entry.get())).grid(row=6,column=0,columnspan=2,pady=10)
+
+    ttk.Label(signup_window,text="NOTICE: We always recommend you to set your own\nsecurity questions in case to reset your password!",bootstyle="danger").grid(row=7,column=0,columnspan=2,pady=10)
 
     # 调整列的权重以使其可扩展
     signup_window.grid_columnconfigure(1, weight=1)
