@@ -6,6 +6,8 @@ from Open_profile_window import open_profile_window
 from Open_Addfriend_window import AddFriend_Window
 from Open_Deletefriend_Window import DeleteFriend_Window
 from Open_Showfriend_Window import ShowFriend_Window
+from Reward_Task_board_class import RewardTaskBoard
+from PersonalizationSettings_class import PersonalizationSettings
 from Student_BlackBoard import StudentBlackBoard
 
 
@@ -23,7 +25,13 @@ def main(nicname,uid):
     # 创建一个Settings菜单选项
     setting_menu = ttk.Menu(main_menu, tearoff=0)
     main_menu.add_cascade(label="Settings", menu=setting_menu)
+
+    #Settings菜单下的第一个功能 退出
     setting_menu.add_command(label="Exit", command=lambda: window.quit())
+
+    #Settings菜单下的第二个功能 个性化设置
+    setting_menu.add_command(label="Personalization",command=lambda:PersonalizationSettings(window))
+
 
     # 按钮frame窗口
     button_frame = ttk.Frame(window, padding=10)
@@ -45,6 +53,9 @@ def main(nicname,uid):
     show_friend_button = ttk.Button(button_frame,text="Show Friend",command=lambda:ShowFriend_Window(window,this_user))
     show_friend_button.grid(row=7,column=0,padx=5)
 
+    #创建Reward Task Board按钮并且执行相关操作
+    reward_task_board_button = ttk.Button(button_frame,text="Reward Task Board",command= lambda:RewardTaskBoard(window))
+    reward_task_board_button.grid(row=8,column=0,padx=5)
 
     # 创建一个 Frame 作为 blackboard
     blackboard_frame = ttk.Frame(window,style='secondary', padding=10)
@@ -60,6 +71,7 @@ def main(nicname,uid):
     #messages_text.pack()
 
     # 添加更多的小部件，如需要
+
 
 
     window.mainloop()
