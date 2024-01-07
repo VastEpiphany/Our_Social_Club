@@ -27,6 +27,9 @@ class SecurityQuestion_Config:
             c3 = ttk.Radiobutton(self.window,text="Your School",command=lambda:self.c3_operation())
             c3.place(x=300,y=160)
 
+            label2 = ttk.Label(self.window,text="Notice that we only allow you to set one unique category\nof the security question for the sake of your safety!",bootstyle="danger")
+            label2.place(x=150,y=200)
+
 
         else:
             self.window = tkinter.messagebox.showerror(title="Oops...",message="You even don't give a user name!")

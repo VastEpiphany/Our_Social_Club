@@ -2,6 +2,7 @@ import ttkbootstrap as ttk
 from ttkbootstrap.constants import *  # 导入常量，例如 LEFT, RIGHT 等
 from open_Signup_window import open_signup_window,center_window
 from Login_Authorization import User_Authorization,handle_login
+from Open_Findby_SecurityQ_Window import Find_Psw_Window
 from Center_window import center_window
 from tkinter import PhotoImage
 
@@ -44,8 +45,14 @@ signup_frame.grid(row=4,column=0,columnspan=3,pady=10,sticky='ew')
 signup_label = ttk.Label(signup_frame, text="Don't have an account yet?", font=("Helvetica", 12))
 signup_label.pack(padx=5)  # padx 是水平方向的内边距
 
-sign_up_button = ttk.Button(signup_frame, text="Sign Up", bootstyle=SUCCESS, style='Custom.TButton', command=lambda: open_signup_window(window))
+sign_up_button = ttk.Button(signup_frame, text="Sign Up", bootstyle="secondary", style='Custom.TButton', command=lambda: open_signup_window(window))
 sign_up_button.pack()
+
+find_psw_label = ttk.Label(signup_frame,text="Forget your password?",font=("Helvetica", 12))
+find_psw_label.pack(padx=5)
+
+find_psw_button = ttk.Button(signup_frame,text="Find Now",bootstyle="warning",command=lambda:Find_Psw_Window(window))
+find_psw_button.pack(padx=5)
 
 # 调整网格列的权重
 window.grid_columnconfigure(1, weight=1)
