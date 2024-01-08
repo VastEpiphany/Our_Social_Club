@@ -13,7 +13,7 @@ class StudentBlackBoard:
         # 输入框和提交按钮
         self.input_text = ttk.Entry(frame, width=50)
         self.input_text.pack()
-        self.submit_button = ttk.Button(frame, text="提交留言", command=self.add_message)
+        self.submit_button = ttk.Button(frame, text="Submit Messages", command=self.add_message)
         self.submit_button.pack()
 
     def add_message(self):

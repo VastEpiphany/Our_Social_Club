@@ -9,6 +9,8 @@ from Open_Showfriend_Window import ShowFriend_Window
 from Reward_Task_board_class import RewardTaskBoard
 from PersonalizationSettings_class import PersonalizationSettings
 from Open_OpinionBox_Window import OpinionBox
+from Open_RecruitmentMessage_Window import JobPosting
+from Open_SQ_main_Window import Main_SQ_Config
 from Student_BlackBoard import StudentBlackBoard
 
 
@@ -20,18 +22,26 @@ def main(nicname,uid):
     window.title("Our Social Club")
     center_window(window, 1300, 900)
 
-# 创建一个主菜单栏
+    # 创建一个主菜单栏
     main_menu = ttk.Menu(window)
     window.config(menu=main_menu)
+
     # 创建一个Settings菜单选项
     setting_menu = ttk.Menu(main_menu, tearoff=0)
     main_menu.add_cascade(label="Settings", menu=setting_menu)
 
-    #Settings菜单下的第一个功能 退出
+    # Settings菜单下的第一个功能 - 退出
     setting_menu.add_command(label="Exit", command=lambda: window.quit())
 
-    #Settings菜单下的第二个功能 个性化设置
-    setting_menu.add_command(label="Personalization",command=lambda:PersonalizationSettings(window))
+    # Settings菜单下的第二个功能 - 个性化设置
+    setting_menu.add_command(label="Personalization", command=lambda: PersonalizationSettings(window))
+
+    # 创建一个Security菜单选项
+    security_menu = ttk.Menu(main_menu, tearoff=0)
+    main_menu.add_cascade(label="Security", menu=security_menu)  # 正确地将security_menu添加为main_menu的一个子菜单
+
+    # Security菜单下的一个功能 - 修改密保设置
+    security_menu.add_command(label="Se-Question Change", command=lambda: Main_SQ_Config(window, this_user.nickname))
 
 
     # 按钮frame窗口
@@ -75,7 +85,7 @@ def main(nicname,uid):
 
 
     # 添加OpinionBox意见箱功能块
-    OpinionBox_frame = ttk.Frame(window, bootstyle="primary", padding=10)
+    OpinionBox_frame = ttk.Frame(window, padding=10)
     OpinionBox_frame.place(x=750, y=800)  # 使用 place 布局管理器
 
     OpinionBox_label = ttk.Label(OpinionBox_frame, text="Wanna give us some opinions?")
@@ -84,5 +94,17 @@ def main(nicname,uid):
     OpinionBox_button = ttk.Button(OpinionBox_frame, bootstyle="info-link", text="Click Me!",
                                command=lambda: OpinionBox(window))
     OpinionBox_button.grid(row=0, column=1, padx=20)  # 使用 grid 布局管理器
+
+    #添加学校岗位招聘信息Window功能区
+    Recruitment_frame = ttk.Frame(window,bootstyle = "primary",padding=10)
+    Recruitment_frame.place(x=100,y=800)
+
+    Recruitment_label = ttk.Label(Recruitment_frame,text="Recruitment message is here:")
+    Recruitment_label.grid(row=0,column=0,padx=20)
+
+    Recruitment_button = ttk.Button(Recruitment_frame,text="Discover Something!",command=lambda:JobPosting(window))
+    Recruitment_button.grid(row=0,column=1,padx=20)
+
+
 
     window.mainloop()
