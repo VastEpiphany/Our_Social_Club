@@ -10,6 +10,7 @@ from Reward_Task_board_class import RewardTaskBoard
 from PersonalizationSettings_class import PersonalizationSettings
 from Open_OpinionBox_Window import OpinionBox
 from Open_RecruitmentMessage_Window import JobPosting
+from Open_FileSharing_Window import FileSharingApp
 from Open_SQ_main_Window import Main_SQ_Config
 from Open_ChangePsw_Main_Window import Main_ChangePsw
 from Student_BlackBoard import StudentBlackBoard
@@ -107,6 +108,16 @@ def main(nicname,uid):
 
     Recruitment_button = ttk.Button(Recruitment_frame,text="Discover Something!",command=lambda:JobPosting(window))
     Recruitment_button.grid(row=0,column=1,padx=20)
+
+    #添加文件资源共享站功能区
+    FileSharing_frame = ttk.Frame(window,padding=10)
+    FileSharing_frame.place(x=100,y=600)
+
+    FileSharing_label = ttk.Label(FileSharing_frame,text="Here's the File Sharing Base:")
+    FileSharing_label.grid(row=0,column=0,padx=10)
+
+    FileSharing_button = ttk.Button(FileSharing_frame,text="Enter",command=lambda:FileSharingApp(window))
+    FileSharing_button.grid(row=0,column=1,padx=20)
 
 
 
