@@ -11,6 +11,7 @@ from PersonalizationSettings_class import PersonalizationSettings
 from Open_OpinionBox_Window import OpinionBox
 from Open_RecruitmentMessage_Window import JobPosting
 from Open_SQ_main_Window import Main_SQ_Config
+from Open_ChangePsw_Main_Window import Main_ChangePsw
 from Student_BlackBoard import StudentBlackBoard
 
 
@@ -40,9 +41,11 @@ def main(nicname,uid):
     security_menu = ttk.Menu(main_menu, tearoff=0)
     main_menu.add_cascade(label="Security", menu=security_menu)  # 正确地将security_menu添加为main_menu的一个子菜单
 
-    # Security菜单下的一个功能 - 修改密保设置
+    # Security菜单下的第一个功能 - 修改密保设置
     security_menu.add_command(label="Se-Question Change", command=lambda: Main_SQ_Config(window, this_user.nickname))
 
+    # Security菜单下的第二个功能 - 修改用户密码功能
+    security_menu.add_command(label="Password Change",command=lambda:Main_ChangePsw(window,this_user))
 
     # 按钮frame窗口
     button_frame = ttk.Frame(window, padding=10)
