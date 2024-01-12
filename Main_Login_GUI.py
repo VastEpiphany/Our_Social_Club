@@ -5,6 +5,7 @@ from Login_Authorization import User_Authorization,handle_login
 from Open_Findby_SecurityQ_Window import Find_Psw_Window
 from Center_window import center_window
 from tkinter import PhotoImage
+from PIL import Image, ImageTk
 
 
 
@@ -17,6 +18,17 @@ center_window(window,1300,900)
 style = ttk.Style()
 style.configure('Custom.TLabel', font=('Bradley Hand ITC', 20)) #本行代码实测有效，能够将标题成功更改
 style.configure('Custom.TButton', font=('Helvetica', 12))
+
+#创建背景图片
+# 加载并调整背景图片大小
+original_image = Image.open('Pic/background.jpg')
+resized_image = original_image.resize((1300, 900), Image.Resampling.LANCZOS)
+background_image = ImageTk.PhotoImage(resized_image)
+
+background_label = ttk.Label(window, image=background_image)
+background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+
 
 # 主题标签
 theme_label = ttk.Label(window, text="                  Our Social Club\nThe Final Frontier for meeting others", style='Custom.TLabel')
@@ -39,8 +51,9 @@ sign_in_button = ttk.Button(window, text="Sign In", bootstyle='info',command=lam
 sign_in_button.grid(row=3,column=2,padx=10)
 
 # 创建 Sign Up 部分  CAUTION：受限于编程进度，目前用户注册的昵称必须是唯一的
-signup_frame = ttk.Frame(window)  # 使用 Frame 来组织内容
-signup_frame.grid(row=4,column=0,columnspan=3,pady=10,sticky='ew')
+signup_frame = ttk.Frame(window,bootstyle="secondary")  # 使用 Frame 来组织内容
+signup_frame.place(x=500,y=750)
+#signup_frame.grid(row=4,column=0,columnspan=3,pady=10,sticky='ew')
 
 signup_label = ttk.Label(signup_frame, text="Don't have an account yet?", font=("Helvetica", 12))
 signup_label.pack(padx=5)  # padx 是水平方向的内边距

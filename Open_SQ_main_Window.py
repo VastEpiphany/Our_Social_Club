@@ -1,9 +1,10 @@
 import tkinter
 import ttkbootstrap as ttk
+from Open_SecurityQ_Window import SecurityQuestion_Config
 from Center_window import center_window
 import csv
 
-class Main_SQ_Config:
+class Main_SQ_Config(SecurityQuestion_Config):
     def __init__(self, window, nickname):
         self.file = "User_SecurityQuestion.csv"
         self.nickname = nickname

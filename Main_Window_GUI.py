@@ -1,4 +1,5 @@
 import ttkbootstrap as ttk
+from PIL import Image, ImageTk
 from Center_window import center_window
 from Main_User_Class import Main_User
 from Load_User import  Load_User
@@ -10,6 +11,7 @@ from Reward_Task_board_class import RewardTaskBoard
 from PersonalizationSettings_class import PersonalizationSettings
 from Open_OpinionBox_Window import OpinionBox
 from Open_RecruitmentMessage_Window import JobPosting
+from LostAndFoundWall_class import LostAndFoundWall
 from Open_FileSharing_Window import FileSharingApp
 from Open_SQ_main_Window import Main_SQ_Config
 from Open_ChangePsw_Main_Window import Main_ChangePsw
@@ -22,7 +24,14 @@ def main(nicname,uid):
 #用户个人主界面显示初始化
     window = ttk.Window(themename='journal')
     window.title("Our Social Club")
+    window.configure(bg="lightblue")
     center_window(window, 1300, 900)
+
+    #在主界面上显示针对特定用户的欢迎语句
+    welcome_label = ttk.Label(window,text=f"Welcome {this_user.nickname} for visiting our club!",font=('Helvetica', 20))
+    welcome_label.place(x=100,y=100)
+
+
 
     # 创建一个主菜单栏
     main_menu = ttk.Menu(window)
@@ -48,13 +57,18 @@ def main(nicname,uid):
     # Security菜单下的第二个功能 - 修改用户密码功能
     security_menu.add_command(label="Password Change",command=lambda:Main_ChangePsw(window,this_user))
 
+
     # 按钮frame窗口
     button_frame = ttk.Frame(window, padding=10)
+
+    #创建第一个有关功能区的Label并且安排其位置
+    button_frame_label = ttk.Label(button_frame,text="User Command Selection")
+    button_frame_label.grid(row=0,column=0,padx=5)
 
     #创建my profile按钮并且执行相关操作
     button_frame.pack(expand=False, side='left', padx=100)
     my_profile_button = ttk.Button(button_frame, text="My Profile",command=lambda: open_profile_window(window,this_user))
-    my_profile_button.grid(row=0, column=0, padx=5)
+    my_profile_button.grid(row=1, column=0, padx=5)
 
     #创建add friend按钮并且执行相关操作
     add_friend_button = ttk.Button(button_frame,text="Add Friend",command=lambda:AddFriend_Window(window,this_user))
@@ -90,7 +104,7 @@ def main(nicname,uid):
 
     # 添加OpinionBox意见箱功能块
     OpinionBox_frame = ttk.Frame(window, padding=10)
-    OpinionBox_frame.place(x=750, y=800)  # 使用 place 布局管理器
+    OpinionBox_frame.place(x=700, y=800)  # 使用 place 布局管理器
 
     OpinionBox_label = ttk.Label(OpinionBox_frame, text="Wanna give us some opinions?")
     OpinionBox_label.grid(row=0, column=0, padx=5)  # 使用 grid 布局管理器
@@ -118,6 +132,16 @@ def main(nicname,uid):
 
     FileSharing_button = ttk.Button(FileSharing_frame,text="Enter",command=lambda:FileSharingApp(window))
     FileSharing_button.grid(row=0,column=1,padx=20)
+
+    #添加失物招领墙功能区
+    Lost_and_Found_frame = ttk.Frame(window,padding=10)
+    Lost_and_Found_frame.place(x=700,y=700)
+
+    L_F_label = ttk.Label(Lost_and_Found_frame,text="Here's the Lost and Found area \nwhere you can discover:")
+    L_F_label.grid(row=0,column=0,padx=20)
+
+    L_F_button = ttk.Button(Lost_and_Found_frame,text="Enter",command=lambda:LostAndFoundWall(window))
+    L_F_button.grid(row=0,column=1,padx=20)
 
 
 

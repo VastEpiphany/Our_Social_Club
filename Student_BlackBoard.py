@@ -6,6 +6,8 @@ class StudentBlackBoard:
     def __init__(self, frame):
         self.frame = frame
         self.messages_file = "BBmessages.csv"
+        self.title_label = ttk.Label(frame, text="Student BlackBoard", font=('Bradley Hand ITC', 16))
+        self.title_label.pack()
         self.messages_text = ttk.Text(frame, height=10, width=50)
         self.messages_text.pack()
         self.load_messages()
