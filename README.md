@@ -31,4 +31,10 @@ Next time, we shall made some new changes according to the user's attribute:
 
    Looking forward to our next update! !
 
+""V1.0 2024/1/12""
+
+Long time no see, my friend!  Our Project is almost finished, now we have modified our GUI interface,which is good to users now. And we have added lots of new features such as Adding friends, Security Question BlackBoard and so on. At the end of this semester, I would like to thank for our Professor Yahui Jia for his generous help and the knowledge he taught me, I would like to thanke for our TA for his/her commitment, I would like to thank for our team for countless days and nights' hard work. Finally, I would like to thank for myself who struggle to make his own way until now. 
+
+Old Programmers never die, they just go out of scope. Hope to make progress in the days to come!  And good bye!   
+
    
