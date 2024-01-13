@@ -1,3 +1,19 @@
+——————————————————————————Our Social Club使用指南：——————————————————————————————
+
+1.安装环境设置：
+建议环境配置：  
+Microsoft Windows10及以上
+Python 3.11
+Pycharm Community Edition 2022.2.4 或其他IDE
+第三方库： tkinter、ttkbootstrap、csv、time、uuid、hashlib、time、os、shutil、PIL
+
+2.运行准备：
+将所有文件解压至统一路径下
+选择Main_Login_GUI.py文件，并点击运行
+
+
+
+
 This is the first version of Our Social Club    V0.1 Beta  2023/11/14 By Jerry Brown
 
 ""  V0.11 Beta 2023/11/15  ""
