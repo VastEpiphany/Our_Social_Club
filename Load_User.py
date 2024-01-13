@@ -3,6 +3,13 @@ from Main_User_Class import Main_User
 
 
 def Load_User(nic,uid):
+    """
+
+    :param nic: 用户nickname昵称
+    :param uid: 用户id
+    干什么用的：当用户第一次登录时，创建Main_User类成员并且将其默认属性nickname和id写入文件，留下年龄、爱好、生日等属性为
+                空位等待用户后续登录后自己去补充
+    """
     try:
         with open("User_info.csv",'r',encoding='utf-8') as file:
             reader = csv.reader(file)

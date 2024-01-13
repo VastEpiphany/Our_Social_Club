@@ -7,6 +7,10 @@ import csv
 
 class Find_Psw_Window:
     def __init__(self,window):
+        """
+
+        :param window: 父窗口
+        """
         self.file = "User_SecurityQuestion.csv"
         self.window = ttk.Toplevel(window)
         center_window(self.window,800,600)
@@ -23,6 +27,12 @@ class Find_Psw_Window:
 
 
     def init_determine(self,name):
+        """
+
+        :param name:用户nickname的entry框中输入的内容
+        :return:
+        """
+        #如果不是什么都没输入就点了Submit
         if name != "":
             self.after_det_then_next_question(name)
         else:
@@ -40,6 +50,13 @@ class Find_Psw_Window:
             self.update_window_for_question(name,category,message)
 
     def update_window_for_question(self, name,category,message):
+        """
+
+        :param name: 用户nickname昵称
+        :param category: 用户密保问题类型
+        :param message: 用户具体密保答案
+        :return:
+        """
         # 清空窗口中的所有组件
         for widget in self.window.winfo_children():
             widget.destroy()
@@ -54,6 +71,13 @@ class Find_Psw_Window:
         button1.place(x=500,y=100)
 
     def handle_final(self,name,message,my_m):
+        """
+
+        :param name: 用户nickname昵称
+        :param message: 用户密保答案
+        :param my_m: 用户自己输入的密保答案
+        :return:
+        """
         if message == my_m:
             # 清空窗口中的所有组件
             for widget in self.window.winfo_children():
@@ -82,6 +106,13 @@ class Find_Psw_Window:
             tkinter.messagebox.showerror("Error","The message isn't correct. Please try again!")
 
     def validate_password_and_handle(self, name,v1, v2):
+        """
+
+        :param name: 用户nickname昵称
+        :param v1: 用户重置密码第一次输入
+        :param v2: 用户重置密码第二次输入
+        :return:
+        """
         if v1 == v2:
             # 处理密码匹配逻辑
             tkinter.messagebox.showinfo("Success", "Password has been reset successfully!")
