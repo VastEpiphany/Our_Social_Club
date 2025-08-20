@@ -1,20 +1,79 @@
-——————————————————————————Our Social Club使用指南：——————————————————————————————
+# Our Social Club - 重构版本
 
-1.安装环境设置：
-建议环境配置：  
-Microsoft Windows10及以上
-Python 3.11
-Pycharm Community Edition 2022.2.4 或其他IDE
-第三方库： tkinter、ttkbootstrap、csv、time、uuid、hashlib、time、os、shutil、PIL
+🎉 **项目已成功重构完成！**
 
-2.运行准备：
-将所有文件解压至统一路径下
-选择Main_Login_GUI.py文件，并点击运行
+## 🚀 快速启动
 
+### 方式一：运行主程序（推荐）
+```bash
+python Main_Login_GUI.py
+```
 
+### 方式二：运行新架构版本
+```bash
+python main.py
+```
 
+## 📁 项目结构
 
-This is the first version of Our Social Club    V0.1 Beta  2023/11/14 By Jerry Brown
+```
+Our_Social_Club/
+├── 📁 src/                    # 重构后的模块化源代码
+│   ├── 📁 models/             # 数据模型
+│   ├── 📁 views/              # 用户界面
+│   ├── 📁 controllers/        # 控制器
+│   ├── 📁 services/           # 业务逻辑
+│   ├── 📁 components/         # 可复用组件
+│   └── 📁 utils/              # 工具函数
+├── 📁 assets/                 # 图片资源
+├── 📁 data/                   # 数据文件
+├── 📁 legacy_backup/          # 原代码备份
+├── 📄 Main_Login_GUI.py       # 主程序入口
+├── 📄 main.py                 # 新架构入口
+└── 📄 requirements.txt        # 项目依赖
+```
+
+## 📋 功能特性
+
+✅ 用户注册和登录  
+✅ 学生公告板  
+✅ 主界面导航  
+✅ 数据持久化  
+✅ 密码加密  
+
+## 🛠️ 安装依赖
+
+```bash
+pip install ttkbootstrap Pillow
+```
+
+## 📖 详细文档
+
+- `README_NEW.md` - 完整项目文档
+- `REFACTOR_REPORT.md` - 重构详细报告
+- `SUMMARY.md` - 重构总结
+
+## 🎯 开发说明
+
+- **代码架构**: MVC模式
+- **主要改进**: 模块化、类型提示、错误处理
+- **向后兼容**: 保持所有原有功能
+- **便于扩展**: 预留功能接口
+
+---
+
+*重构完成时间: 2025年8月20日*
+
+## 📚 版本历史
+
+### V2.0 - 重构版本 (2025/08/20)
+- 🔄 完全重构代码架构，采用MVC模式
+- 🏗️ 模块化设计，提高可维护性  
+- 📝 添加完整的类型提示和文档
+- 🛡️ 改进错误处理和用户体验
+- 🎨 统一代码风格和规范
+
+### V1.0 - 原始版本 (2024/01/12)
 
 ""  V0.11 Beta 2023/11/15  ""
    Create a main GUI interface with buttons. (Though buttons haven't been totally made yet TAT)
